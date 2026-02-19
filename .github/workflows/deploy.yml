@@ -21,23 +21,27 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
-          cache-dependency-path: web/package-lock.json
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Install dependencies
-        run: npm install
-        working-directory: ./web
+        run: |
+          if [ -d "web" ]; then cd web; fi
+          npm install
 
       - name: Build with Next.js
-        run: npm run build
-        working-directory: ./web
+        run: |
+          if [ -d "web" ]; then cd web; fi
+          npm run build
         env:
-          # Set this to your Backend URL after you host it on Render/Railway
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./web/out
+          path: |
+            ${{ github.workspace }}/web/out
+            ${{ github.workspace }}/out
+          if-no-files-found: ignore
 
   deploy:
     environment:
