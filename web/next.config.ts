@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
   },
   // If your repository is not at the root (e.g., github.com/user/repo), 
   // you might need to add:
-  // basePath: '/repo-name',
+  basePath: '/Marketplace-App',
+  assetPrefix: '/Marketplace-App/',
 };
 
 export default nextConfig;
