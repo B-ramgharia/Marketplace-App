@@ -1,8 +1,19 @@
 [
   {
-    "id": "1771486893862",
-    "email": "baljeet.rathor2005@gmail.com",
-    "password": "$2b$10$15agcNTRPTmaS3VGEjJLXOH7X5cOorHw5jYrmtL.jKIE/jxzr7I6e",
-    "favorites": []
+    "id": "user1",
+    "email": "user@example.com",
+    "password": "$2a$10$f6pXWpE9P3R6WpE9P3R6Wue8U9V9V9V9V9V9V9V9V9V9V9V9V9V9W",
+    "favorites": [
+      "1",
+      "3"
+    ]
+  },
+  {
+    "id": "user2",
+    "email": "admin@example.com",
+    "password": "$2a$10$LpXWpE9P3R6WpE9P3R6Wue8U9V9V9V9V9V9V9V9V9V9V9V9V9V9W",
+    "favorites": [
+      "2"
+    ]
   }
 ]

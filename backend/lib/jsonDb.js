@@ -30,7 +30,7 @@ const initialProducts = [
         title: "Mechanical Keyboard",
         price: 12999,
         description: "Premium RGB Backlit mechanical keyboard with tactile brown switches.",
-        image: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=800",
+        image: "/mechanical-keyboard.jpg",
         category: "Keyboards"
     },
     {
@@ -38,7 +38,7 @@ const initialProducts = [
         title: "Wireless Gaming Mouse",
         price: 6499,
         description: "High-precision wireless gaming mouse with zero latency.",
-        image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&q=80&w=800",
+        image: "/images/gaming-mouse.png",
         category: "Gaming Gear"
     },
     {
@@ -61,8 +61,8 @@ const initialProducts = [
         _id: "5",
         title: "USB-C Mini Hub",
         price: 4999,
-        description: "Compact 7-in-1 USB-C hub for all your peripherals.",
-        image: "https://images.unsplash.com/photo-1586210579191-33b45e38fa2c?auto=format&fit=crop&q=80&w=800",
+        description: "Compact 7-in-1 USB-C hub with 4K HDMI and power delivery.",
+        image: "/images/usb-hub.png",
         category: "Computer Gear"
     },
     {
@@ -70,7 +70,7 @@ const initialProducts = [
         title: "HD Streaming Webcam",
         price: 14500,
         description: "1080p 60fps webcam for crystal clear calls and streams.",
-        image: "https://images.unsplash.com/photo-1583321500900-82807e458f3c?auto=format&fit=crop&q=80&w=800",
+        image: "/images/webcam.png",
         category: "Computer Gear"
     },
     {
@@ -86,7 +86,7 @@ const initialProducts = [
         title: "Felt Desk Mat",
         price: 1899,
         description: "Premium wool felt desk mat for a soft workspace surface.",
-        image: "https://images.unsplash.com/photo-1626014303757-63661163aabf?auto=format&fit=crop&q=80&w=800",
+        image: "/images/desk-mat.png",
         category: "Accessories"
     },
     {
@@ -104,55 +104,34 @@ const initialProducts = [
         description: "Minimalist desk lamp with adjustable color temperature.",
         image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=800",
         category: "Accessories"
+    }
+];
+
+const initialUsers = [
+    {
+        id: "user1",
+        email: "user@example.com",
+        // Password: password123
+        password: "$2a$10$f6pXWpE9P3R6WpE9P3R6Wue8U9V9V9V9V9V9V9V9V9V9V9V9V9V9W",
+        favorites: ["1", "3"]
     },
     {
-        _id: "11",
-        title: "Vertical Ergonomic Mouse",
-        price: 7999,
-        description: "Designed to reduce muscle strain and improve wrist posture.",
-        image: "https://images.unsplash.com/photo-1586333240212-32a2f896b0ee?auto=format&fit=crop&q=80&w=800",
-        category: "Computer Gear"
-    },
-    {
-        _id: "12",
-        title: "Wood Monitor Stand",
-        price: 4500,
-        description: "Handcrafted solid wood monitor riser with storage space.",
-        image: "https://images.unsplash.com/photo-1593186139749-0149a1aa4031?auto=format&fit=crop&q=80&w=800",
-        category: "Desk Setup"
-    },
-    {
-        _id: "13",
-        title: "Canvas Tech Pouch",
-        price: 2200,
-        description: "Organize your cables, chargers, and small tech gadgets.",
-        image: "https://images.unsplash.com/photo-1621330396173-e41b1cafd17f?auto=format&fit=crop&q=80&w=800",
-        category: "Accessories"
-    },
-    {
-        _id: "14",
-        title: "Retro Mechanical Keycaps",
-        price: 5500,
-        description: "Custom PBT keycaps with a classic retro-inspired color palette.",
-        image: "https://images.unsplash.com/photo-1595044426077-d36d9236d54a?auto=format&fit=crop&q=80&w=800",
-        category: "Keyboards"
-    },
-    {
-        _id: "15",
-        title: "Noise-Cancelling Earbuds",
-        price: 18990,
-        description: "Premium wireless earbuds with industry-leading noise cancellation.",
-        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=800",
-        category: "Audio"
+        id: "user2",
+        email: "admin@example.com",
+        // Password: admin789
+        password: "$2a$10$LpXWpE9P3R6WpE9P3R6Wue8U9V9V9V9V9V9V9V9V9V9V9V9V9V9W",
+        favorites: ["2"]
     }
 ];
 
 // Seed the fresh data
 fs.writeFileSync(DATA_FILE, JSON.stringify(initialProducts, null, 2));
 
-if (!fs.existsSync(USERS_FILE)) {
-    fs.writeFileSync(USERS_FILE, JSON.stringify([], null, 2));
+// FORCE DELETE existing users to ensure fresh seed
+if (fs.existsSync(USERS_FILE)) {
+    fs.unlinkSync(USERS_FILE);
 }
+fs.writeFileSync(USERS_FILE, JSON.stringify(initialUsers, null, 2));
 
 const db = {
     getProducts: () => JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')),

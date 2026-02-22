@@ -21,27 +21,22 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
+          cache-dependency-path: "web/package-lock.json"
 
       - name: Install dependencies
-        run: |
-          if [ -d "web" ]; then cd web; fi
-          npm install
+        working-directory: ./web
+        run: npm install
 
       - name: Build with Next.js
-        run: |
-          if [ -d "web" ]; then cd web; fi
-          npm run build
+        working-directory: ./web
+        run: npm run build
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: |
-            ${{ github.workspace }}/web/out
-            ${{ github.workspace }}/out
-          if-no-files-found: ignore
+          path: ./web/out
 
   deploy:
     environment:
@@ -53,3 +48,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+

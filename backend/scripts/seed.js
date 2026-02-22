@@ -8,7 +8,7 @@ const products = [
         title: "Mechanical Keyboard",
         price: 129,
         description: "RGB, Brown Switches, PBT Caps. Experience tactile feedback and vibrant aesthetics.",
-        image: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=800",
+        image: "/mechanical-keyboard.jpg",
         category: "Peripherals"
     },
     {
@@ -36,7 +36,7 @@ const products = [
         title: "USB-C Dock Station",
         price: 79,
         description: "11-in-1, Dual HDMI, Power Delivery. Connect all your devices with a single cable.",
-        image: "https://images.unsplash.com/photo-1586210579191-33b45e38fa2c?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1616578273461-3a99ce422de6?auto=format&fit=crop&q=80&w=800",
         category: "Tech"
     },
     {
@@ -49,7 +49,6 @@ const products = [
     {
         title: "Microphone Arm",
         price: 59,
-        description: "Adjustable Steel, Cable Management. Professional look for your audio setup.",
         image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=800",
         category: "Audio"
     },

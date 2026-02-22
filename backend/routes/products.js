@@ -68,4 +68,66 @@ router.post('/:id/favorite', auth, async (req, res) => {
     }
 });
 
+// POST /products - Create
+router.post('/', auth, async (req, res) => {
+    try {
+        const { title, price, description, image, category } = req.body;
+        const products = db.getProducts();
+
+        const newProduct = {
+            _id: Date.now().toString(),
+            title,
+            price: parseFloat(price),
+            description,
+            image: image || 'https://images.unsplash.com/photo-1587829741301-dc798b83dadc?auto=format&fit=crop&q=80&w=800',
+            category: category || 'General'
+        };
+
+        products.push(newProduct);
+        db.saveProducts(products);
+        res.status(201).json(newProduct);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+router.put('/:id', auth, async (req, res) => {
+    try {
+        const products = db.getProducts();
+        const index = products.findIndex(p => p._id === req.params.id);
+        if (index === -1) return res.status(404).json({ message: 'Product not found' });
+
+        const { title, price, description, image, category } = req.body;
+
+        products[index] = {
+            ...products[index],
+            title: title || products[index].title,
+            price: price ? parseFloat(price) : products[index].price,
+            description: description || products[index].description,
+            image: image || products[index].image,
+            category: category || products[index].category
+        };
+
+        db.saveProducts(products);
+        res.json(products[index]);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// DELETE /products/:id - Delete
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        let products = db.getProducts();
+        const exists = products.some(p => p._id === req.params.id);
+        if (!exists) return res.status(404).json({ message: 'Product not found' });
+
+        products = products.filter(p => p._id !== req.params.id);
+        db.saveProducts(products);
+        res.json({ message: 'Product deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 module.exports = router;
