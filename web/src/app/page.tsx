@@ -157,9 +157,9 @@ export default function Home() {
       {/* Category Grid Section */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <CategoryCard title="Mechanical" tag="Keyboards" image="/images/category-mechanical.png" />
-          <CategoryCard title="Studio" tag="Audio" image="/images/category-audio.png" />
-          <CategoryCard title="Desk" tag="Accessories" image="/images/category-desk.png" />
+          <CategoryCard title="Mechanical" tag="Keyboards" image="/Marketplace-App/images/category-mechanical.png" />
+          <CategoryCard title="Studio" tag="Audio" image="/Marketplace-App/images/category-audio.png" />
+          <CategoryCard title="Desk" tag="Accessories" image="/Marketplace-App/images/category-desk.png" />
         </div>
       </section>
     </div>

@@ -56,7 +56,7 @@ export default function ProductDetailClient({ id }: { id: string }) {
                         animate={{ opacity: 1, x: 0 }}
                         className="relative aspect-square rounded-[2rem] overflow-hidden bg-gray-50 border border-gray-100"
                     >
-                        <img src={product.image} alt={product.title} className="w-full h-full object-cover" />
+                        <img src={product.image?.startsWith('/') ? `/Marketplace-App${product.image}` : product.image} alt={product.title} className="w-full h-full object-cover" />
                     </motion.div>
 
                     {/* Product Info */}

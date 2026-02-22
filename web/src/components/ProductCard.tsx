@@ -97,7 +97,7 @@ export default function ProductCard({ id, title, price, image, category, index =
             <Link href={`/products/${id}`}>
                 <div className="relative aspect-square overflow-hidden bg-gray-50">
                     <motion.img
-                        src={image || 'https://images.unsplash.com/photo-1587829741301-dc798b83dadc?auto=format&fit=crop&q=80&w=800'}
+                        src={image?.startsWith('/') ? `/Marketplace-App${image}` : (image || 'https://images.unsplash.com/photo-1587829741301-dc798b83dadc?auto=format&fit=crop&q=80&w=800')}
                         alt={title}
                         className="w-full h-full object-cover"
                         whileHover={{ scale: 1.15 }}
